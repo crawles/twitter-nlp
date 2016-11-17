@@ -1,0 +1,9 @@
+---
+applications:
+- name: rq-test
+  memory: 256MB
+  disk_quota: 1GB
+  instances: 1
+  buildpack: https://github.com/cloudfoundry/python-buildpack.git
+  no-route: true # for task manager
+  command: python run-worker.py

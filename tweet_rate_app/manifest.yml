@@ -1,0 +1,8 @@
+---
+applications:
+- name: sentiment-compute-metrics
+  memory: 256MB
+  disk_quota: 1GB
+  instances: 1
+  buildpack: https://github.com/cloudfoundry/python-buildpack.git
+  command: gunicorn --bind 0.0.0.0:$PORT tweet_rate:app

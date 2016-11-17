@@ -1,0 +1,92 @@
+abody {
+    background: #ECF1F2;
+    color: #8e8e8e;
+    font: 14px/20px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+aul {
+    list-style: none;
+    padding: 15px 0px 15px 0px;
+}
+
+ali {
+    border-bottom: 1px solid #eee;
+    padding: 10px 10px 10px 10px;
+    margin: 0px 20px 0px 20px;
+
+}
+
+
+a {
+    color: #76949F;
+    text-decoration: none;
+}
+
+div.twitter-feed {
+    width: 600px;
+    background: white;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 15px 15px 15px 15px;
+}
+
+#tweet-cell {
+    /*border-right: 1px solid #eee;*/
+    padding: 10px 10px 10px 10px;
+    margin: 0px 20px 0px 20px;
+}
+
+#sentiment-cell {
+    /*border-right: 1px solid #eee;*/
+    font: 24px Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+    font-weight: bold
+}
+
+#tweet-row {
+    /*border-bottom: 1px solid #dddddd;*/
+}
+
+.verticalLine {
+    border-right: 2px solid #dddddd;
+}
+
+.tweet-rate-line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.sentiment-line {
+  fill: none;
+  stroke: #aec7e8;
+  stroke-width: 1.5px;
+}
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+.vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}

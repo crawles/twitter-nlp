@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pivotal Data Science: Scalable Analytics</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <link rel="stylesheet" type="text/css" href="../static/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../static/keen-dashboards.css" />
+  <link rel="stylesheet" type="text/css" href="../static/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/Tweet.js"></script>
+  <script type="text/javascript" src="../static/sendSyntheticTweets.js"></script>
+  <link href="https://d1fto35gcfffzn.cloudfront.net/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+</head>
+<body class="application">
+
+</body>
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="./">Twitter Dashboard</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Source (GitHub)</a></li>
+          <li><a href="#">Pivotal.io</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+
+      <div class="col-sm-3">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Live Tweet Stream
+            <div style="float: right"><canvas id="myCanvas" width="120" height="20"></canvas></div>
+
+          </div>
+
+          <div class="chart-stage" style="height:825px">
+            <table class="" id="output">
+            </table>
+          </div>
+          <div class="chart-notes">
+          </div>
+        </div>
+        <p class="small text-muted"><a href="https://pivotal.io/data-science">Pivotal Data Science</a> 2016</p>
+
+      </div>
+
+      <div class="col-sm-9">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Tweet stream
+          </div>
+           <!--svg width="764" height="500"></svg-->
+
+        <div class="chart-stage">
+            <div id="container" class="svg-container"></div>
+            <div id="container1" class="svg-container"></div>
+        </div>
+        <div class="chart-notes">
+          </div>
+        </div>
+
+        <div class="chart-wrapper col-sm-6">
+          <div class="chart-title">
+            Scale testing: Compute sentiment on more Tweets
+          </div>
+          <div class="chart-stage text-center" style="height:100%">
+               <button type="button" class="btn btn-lg btn-primary" onclick="sendTen()">10 Tweets</button>
+               <button type="button" class="btn btn-lg btn-primary" onclick="sendOneHundred()">100 Tweets</button>
+               <button type="button" class="btn btn-lg btn-primary" onclick="sendOneThousand()">1,000 Tweets</button>
+          </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+  </div>
+
+  <script type="text/javascript" src="../static/holder.js"></script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+  <script type="text/javascript" src="../static/keen.min.js"></script>
+  <script type="text/javascript" src="../static/meta.js"></script>
+  <script src="http://d3js.org/d3.v4.min.js"></script>
+  <script type="text/javascript" src="../static/tweetChart.js"></script>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = 8;
+
+      context.beginPath();
+      context.arc(centerX+50, centerY, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'green';
+      context.fill();
+      context.fillStyle = 'black';
+      context.font = "14px Arial";
+      context.fillText("Feed Active:", 10, 15);
+    </script>
+</body>
+
+</html>
