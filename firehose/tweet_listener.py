@@ -43,7 +43,7 @@ class CustomStreamListener(tweepy.StreamListener):
         super(tweepy.StreamListener, self).__init__()
 
     def compute_polarities(self, tweet_list):
-        url = 'http://sentiment-compute-flask.cfapps.pez.pivotal.io/polarity_compute'
+        url = 'http://sentiment-compute-app.cfapps.pez.pivotal.io/polarity_compute'
         # url = 'http://127.0.0.1:8001/polarity_compute'
         ps = requests.post(url, json={"data": self.tweet_list}).json()['polarity']
         return ps

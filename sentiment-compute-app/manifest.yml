@@ -1,6 +1,6 @@
 ---
 applications:
-- name: sentiment-compute-flask
+- name: sentiment-compute-app
   memory: 512MB
   disk_quota: 2GB
   instances: 1

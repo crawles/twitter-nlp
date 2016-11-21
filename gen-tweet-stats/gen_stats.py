@@ -11,10 +11,10 @@ def gen_tweet_stats():
     time_interval = 1
     while True:
         time_start = time.time()
-        url = 'http://sentiment-compute-metrics.cfapps.pez.pivotal.io/tweet_rate'
+        url = 'http://compute-tweet-stats.cfapps.pez.pivotal.io/tweet_rate'
         tr = requests.get(url, {'time_interval': time_interval}).content
 
-        url = 'http://sentiment-compute-metrics.cfapps.pez.pivotal.io/avg_sentiment'
+        url = 'http://compute-tweet-stats.cfapps.pez.pivotal.io/avg_sentiment'
         avg_polarity = requests.get(url, {'time_interval': time_interval}).content
         while not helper_functions.been_n_second(.98, time.time(), time_start, wait_time=.01):
             pass

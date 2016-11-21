@@ -1,6 +1,6 @@
 ---
 applications:
-- name: get-tweet-stats
+- name: gen-tweet-stats
   memory: 256MB
   disk_quota: 256MB
   instances: 1
