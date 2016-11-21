@@ -1,9 +1,9 @@
 ---
 applications:
-- name: twitter-firehose-listener
+- name: tweet-stats
   memory: 256MB
   disk_quota: 256MB
   instances: 1
   buildpack: python_buildpack
-  no-route: true 
-  command: python tweet_listener.py
+  no-route: true # for task manager
+  command: python gen_stats.py

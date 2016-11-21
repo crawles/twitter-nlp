@@ -1,12 +1,6 @@
-import time
-def myfunc(a,b):
-    time.sleep(5)
-    return a + b
-
 import json
 import time
 
-import pandas as pd
 import requests
 
 import helper_functions
@@ -26,4 +20,6 @@ def gen_tweet_stats():
             pass
         stats = {'tweet_rate': tr, 'avg_polarity': avg_polarity}
         r.publish('tweet_stats', json.dumps(stats))
-        print tr
+
+if __name__ == '__main__':
+    gen_tweet_stats()

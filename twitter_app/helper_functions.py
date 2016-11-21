@@ -1,12 +1,11 @@
 import json
 import os
 import time
-import threading
 
 import redis
 
 # initialize redis connection for local and CF deployment
-def connect_redis_db(redis_service_name = None):
+def connect_redis_db(redis_service_name = 'p-redis'):
     if os.environ.get('VCAP_SERVICES') is None: # running locally
         DB_HOST = 'localhost'
         DB_PORT = 6379
@@ -24,16 +23,6 @@ def connect_redis_db(redis_service_name = None):
                               port=DB_PORT,
                               password=DB_PW,
                               db=REDIS_DB)
-
-
-def set_interval(func, sec):
-    def func_wrapper():
-        set_interval(func, sec)
-        func()
-    t = threading.Timer(sec, func_wrapper)
-    t.start()
-    return t
-
 
 def sse_pack(d):
     """For sending sse to client. Formats a dictionary into correct form for SSE"""

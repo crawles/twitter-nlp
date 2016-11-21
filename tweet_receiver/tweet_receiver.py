@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from gevent.pywsgi import WSGIServer
 
@@ -18,5 +20,9 @@ def view_tweets():
     return str(msg)
 
 if __name__ == '__main__':
-    http_server = WSGIServer(('',5000), app)
+    if os.environ.get('VCAP_SERVICES') is None: # running locally
+        PORT = 8080
+    else:                                       # running on CF
+        PORT = int(os.getenv("PORT"))
+    http_server = WSGIServer(('0.0.0.0',PORT), app)
     http_server.serve_forever()

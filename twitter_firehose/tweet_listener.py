@@ -6,12 +6,10 @@ import random
 import sys
 import time
 
-import numpy as np
 from profanity import profanity
 import requests
 import tweepy
 
-import fh_functions
 import helper_functions
 
 # connect to redis
@@ -22,13 +20,11 @@ CONSUMER_KEY=os.getenv('CONSUMER_KEY',None)
 CONSUMER_SECRET=os.getenv('CONSUMER_SECRET',None)
 ACCESS_TOKEN=os.getenv('ACCESS_TOKEN',None)
 ACCESS_TOKEN_SECRET=os.getenv('ACCESS_TOKEN_SECRET',None)
-
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 terms = ['python','steph curry','cloud foundry','pivotal','new york','data science', 'javascript',
          'machine learning', 'wonderful', 'algorithm', 'java', 'programming']
-stream = tweepy.streaming.Stream(auth, CustomStreamListener(api))
 
 # load synthetic tweets for backup
 syn_tweets = cPickle.load(open('status-11-17-2016.pkl'))
@@ -83,12 +79,12 @@ class CustomStreamListener(tweepy.StreamListener):
             # score sentiment
             ps = self.compute_polarities(self.tweet_list)
             # for sentiment plot on dashboard - using average polarity per second (js code queries every second)
-            r.lpush('polarity', json.dumps({'time': time.time(), 'polarity': np.mean(ps)}))
+            mean_ps = sum(ps)/(1.0*len(ps))
+            r.lpush('polarity', json.dumps({'time': time.time(), 'polarity': mean_ps}))
             cur_tweet = self.tweet_list[-1]
             cur_p = ps[-1]
             self.score_tweet_time = time.time()
             self.tweet_list = []
-
         # for posting to dashboard every n seconds
         time_since_last_redis_write = (time.time() - self.write_to_redis_time)
         if time_since_last_redis_write > self.write_to_redis_int:
@@ -104,23 +100,18 @@ class CustomStreamListener(tweepy.StreamListener):
         print >> sys.stderr, 'Timeout...'
         return True  # Don't kill the stream
 
-
-conn_log = []
+stream = tweepy.streaming.Stream(auth, CustomStreamListener(api))
 emulate_time = 60
 while True:
-    print "--------- CONNECTING ---------"
-    conn_log, retries = fh_functions.num_connects_in_last_n(conn_log,emulate_time)
     try:
-        conn_log.append(time.time())
-        # Connect/reconnect the stream
+        print 'Connecting to Twitter Firehose'
+        ERROR
         stream.filter(track = terms, stall_warnings=True, filter_level="low")
-
-    except:
-        conn_log.append(time.time())
+    except (KeyboardInterrupt, Exception), e:
+        print e
         print 'Emulating tweets for {} seconds'.format(emulate_time)
+        stream.disconnect()
         start_time = time.time()
         while (time.time() - start_time) < emulate_time:
             time.sleep(random.random())
             stream.listener.emulate_tweet()
-    if retries > 10:
-        break

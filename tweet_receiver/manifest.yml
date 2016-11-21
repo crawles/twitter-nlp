@@ -1,9 +1,9 @@
 ---
 applications:
-- name: twitter-firehose-listener
+- name: tweet-receiver
   memory: 256MB
   disk_quota: 256MB
   instances: 1
   buildpack: python_buildpack
-  no-route: true 
-  command: python tweet_listener.py
+  route: tweet-receiver
+  command: python tweet_receiver.py

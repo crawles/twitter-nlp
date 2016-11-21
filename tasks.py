@@ -1,10 +1,9 @@
 import json
 import time
 
-import pandas as pd
 import requests
 
-import helper_functions
+from twitter_app import helper_functions
 
 r = helper_functions.connect_redis_db()
 

@@ -6,7 +6,7 @@ import threading
 import redis
 
 # initialize redis connection for local and CF deployment
-def connect_redis_db(redis_service_name = None):
+def connect_redis_db(redis_service_name = 'p-redis'):
     if os.environ.get('VCAP_SERVICES') is None: # running locally
         DB_HOST = 'localhost'
         DB_PORT = 6379
@@ -14,6 +14,7 @@ def connect_redis_db(redis_service_name = None):
         REDIS_DB = 1
     else:                                       # running on CF
         env_vars = os.environ['VCAP_SERVICES']
+        print 'THIS IS THE SERVICE:', json.loads(env_vars)
         credentials = json.loads(env_vars)[redis_service_name][0]['credentials']
         DB_HOST = credentials['host']
         DB_PORT = credentials['port']

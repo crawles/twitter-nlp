@@ -1,8 +1,10 @@
-import helper_functions
 import datetime
-import random
 import math
+import random
+
 import pandas as pd
+
+from twitter_app import helper_functions
 
 r = helper_functions.connect_redis_db()
 r.lpush('n_tweets',(datetime.datetime.now(),math.floor(random.random() * 10)))
