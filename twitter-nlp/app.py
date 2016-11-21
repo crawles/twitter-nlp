@@ -30,7 +30,6 @@ def gen_dashboard_tweets():
         msg = json.loads(message['data'])
         tweet_sent = {"data": json.dumps({"tweet": msg['text'],
                                           "polarity": '{:1.2f}'.format(msg['polarity'])})}
-        print msg
         yield (helper_functions.sse_pack(tweet_sent))
         sleep(n-2) # new tweet won't get published for n seconds, let python rest
 
@@ -74,6 +73,7 @@ def page():
 if __name__ == '__main__':
     if os.environ.get('VCAP_SERVICES') is None: # running locally
         PORT = 5001
+        app.debug = True
     else:                                       # running on CF
         PORT = int(os.getenv("PORT"))
     http_server = WSGIServer(('0.0.0.0',PORT), app)

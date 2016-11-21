@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pivotal Data Science: Scalable Analytics</title>
+  <title>Twitter NLP</title>
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
   <link rel="stylesheet" type="text/css" href="../static/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../static/keen-dashboards.css" />
@@ -25,7 +25,7 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="">Twitter Dashboard</a>
+        <a class="navbar-brand" href="">Twitter NLP</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-left">
@@ -43,7 +43,7 @@
       <div class="col-sm-3">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Live Tweet Stream
+            Live Sentiment Analysis Stream
             <div style="float: right"><canvas id="myCanvas" width="120" height="20"></canvas></div>
 
           </div>
@@ -62,7 +62,7 @@
       <div class="col-sm-9">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Tweet stream
+            Stats
           </div>
            <!--svg width="764" height="500"></svg-->
 
@@ -73,18 +73,29 @@
         <div class="chart-notes">
           </div>
         </div>
+          <row>
+                <div class="chart-wrapper col-sm-6" style="padding-bottom:4px;">
+                  <div class="chart-title">
+                    Scale testing: Compute sentiment on more Tweets
+                  </div>
+                  <div class="chart-stage text-center" style="height:100%">
+                       <button type="button" class="btn btn-lg btn-primary" onclick="sendTen()">10 Tweets</button>
+                       <button type="button" class="btn btn-lg btn-primary" onclick="sendOneHundred()">100 Tweets</button>
+                       <button type="button" class="btn btn-lg btn-primary" onclick="sendOneThousand()">1,000 Tweets</button>
+                  </div>
+                </div>
+                <div class="col-sm-1"></div>
 
-        <div class="chart-wrapper col-sm-6">
-          <div class="chart-title">
-            Scale testing: Compute sentiment on more Tweets
-          </div>
-          <div class="chart-stage text-center" style="height:100%">
-               <button type="button" class="btn btn-lg btn-primary" onclick="sendTen()">10 Tweets</button>
-               <button type="button" class="btn btn-lg btn-primary" onclick="sendOneHundred()">100 Tweets</button>
-               <button type="button" class="btn btn-lg btn-primary" onclick="sendOneThousand()">1,000 Tweets</button>
-          </div>
-        </div>
-
+                <div class="chart-wrapper col-sm-5">
+                  <div class="chart-title">
+                    Tweet stats
+                  </div>
+                  <div class="chart-stage text-center" >
+                      <div class="col-sm-6"><p>Tweets/Minute:</p> <b id="tweetsPerMinute">0</b></div>
+                      <div class="col-sm-6"><p>Total Tweets:</p> <b id="totalTweets">0</b></div>
+                  </div>
+                </div>
+        </row>
     </div>
 
     <hr>

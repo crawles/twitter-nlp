@@ -1,0 +1,5 @@
+name: locust_requirements
+dependencies:
+  - python=2.7.11
+  - pip:
+      - locustio

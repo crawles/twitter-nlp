@@ -1,9 +1,0 @@
----
-applications:
-- name: tweet-receiver
-  memory: 256MB
-  disk_quota: 256MB
-  instances: 1
-  buildpack: python_buildpack
-  route: tweet-receiver
-  command: python tweet_receiver.py

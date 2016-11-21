@@ -35,6 +35,9 @@ def compute_polarity():
         return str(0.5)
     return str(avg_polarity)
 
+@app.route('/num_tweets')
+def num_tweets():
+    return str(r['tweet_counter'])
 
 @app.route('/flushall')
 def flushall():
