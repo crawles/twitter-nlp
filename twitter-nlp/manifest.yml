@@ -1,9 +1,0 @@
----
-applications:
-- name: twitter-nlp
-  memory: 512MB
-  disk_quota: 512MB
-  instances: 1
-  buildpack: python_buildpack
-  route: twitter-nlp
-  command: python app.py

@@ -1,8 +1,0 @@
----
-applications:
-- name: load-test-twitter-nlp
-  memory: 1GB
-  disk_quota: 2GB
-  instances: 1
-  buildpack: https://github.com/cloudfoundry/python-buildpack.git
-  command: locust --host=http://sentiment-compute-app.cfapps.pez.pivotal.io/polarity_compute --web-host=0.0.0.0 --web-port=$PORT
