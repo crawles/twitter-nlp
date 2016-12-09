@@ -105,7 +105,6 @@ emulate_time = 60
 while True:
     try:
         print 'Connecting to Twitter Firehose'
-        ERROR
         stream.filter(track = terms, stall_warnings=True, filter_level="low")
     except (KeyboardInterrupt, Exception), e:
         print e

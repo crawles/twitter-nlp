@@ -10,12 +10,11 @@ $(document).ready(
                 }
                 messageJSON = JSON.parse(message.data)
                 $('#output').prepend('<tr id="tweet-row"> ' +
-                '<td id="tweet-cell" class="col-md-10">&nbsp<div class="verticalLine">'+ urlify(messageJSON.tweet) + '</div></td>' +
-                '<td id="sentiment-cell" class="col-md-2">' + polarityToLabel(messageJSON.polarity) + '</td> </tr>');
+                '<td id="tweet-cell" class="col-sm-10">&nbsp<div class="verticalLine">'+ urlify(messageJSON.tweet) + '</div></td>' +
+                '<td id="sentiment-cell" class="col-sm-2">' + polarityToLabel(messageJSON.polarity) + '</td> </tr>');
         }
     }
 );
-
 function polarityToLabel(p) {
     if (p >= 0.9) {
         return "<div style=\"color:green\"> pos </div> "

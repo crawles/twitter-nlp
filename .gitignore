@@ -1,7 +1,6 @@
 .ipynb_checkpoints
 .idea
 *.pyc
-*.env
 debugger
 old
 profile.env
