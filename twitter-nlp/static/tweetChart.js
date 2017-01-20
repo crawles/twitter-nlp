@@ -136,7 +136,7 @@ function updateStats() {
     $("#tweetsPerMinute").text(numberWithCommas(tweetsPerMin));
 
     // total tweets
-    $.get( "http://compute-tweet-stats.cfapps.pez.pivotal.io/num_tweets", function( data ) {
+    $.get( sentimentStatsURL + "/num_tweets", function( data ) {
          $("#totalTweets").text(numberWithCommas(data));
     });
 }

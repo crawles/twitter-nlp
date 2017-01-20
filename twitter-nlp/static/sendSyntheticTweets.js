@@ -19,7 +19,7 @@ oneThousandTweets = duplicateTweets(99);
 
 function sendTweets(tweets) {
     $.ajax({
-        url: 'http://sentiment-compute-app.cfapps.pez.pivotal.io/polarity_compute',
+        url: sentimentComputeURL + '/polarity_compute',
         dataType: 'json',
         type: 'post',
         contentType: 'application/json',

@@ -30,7 +30,7 @@ applications:
       health-check-type: none
       command: python tweet_listener.py
       env:
-        SENTIMENT_COMPUTE_URL: 'http://sentiment-compute-app.cfapps.pez.pivotal.io'
+        SENTIMENT_COMPUTE_URL: *URL for sentiment-compute-app*
       services:
         - twitter-nlp-redis
 
@@ -44,7 +44,7 @@ applications:
       health-check-type: none
       command: python gen_stats.py
       env:
-        SENTIMENT_STATS_URL: 'http://compute-tweet-stats.cfapps.pez.pivotal.io'
+        SENTIMENT_STATS_URL: *URL for compute-tweet-stats*
       services:
         - twitter-nlp-redis
 
@@ -55,7 +55,7 @@ applications:
       instances: 1
       buildpack: python_buildpack
       env:
-        SENTIMENT_COMPUTE_URL: 'http://sentiment-compute-app.cfapps.pez.pivotal.io'
+        SENTIMENT_COMPUTE_URL: *URL for sentiment-compute-app*
       command: locust --host=$SENTIMENT_COMPUTE_URL --web-host=0.0.0.0 --web-port=$PORT
 
     - name: twitternlp
@@ -67,7 +67,7 @@ applications:
       route: twitternlp
       command: python app.py
       env:
-        SENTIMENT_COMPUTE_URL: 'http://sentiment-compute-app.cfapps.pez.pivotal.io'
-        SENTIMENT_STATS_URL: 'http://compute-tweet-stats.cfapps.pez.pivotal.io'
+        SENTIMENT_COMPUTE_URL: *URL for sentiment-compute-app*
+        SENTIMENT_STATS_URL: *URL for compute-tweet-stats*
       services:
         - twitter-nlp-redis

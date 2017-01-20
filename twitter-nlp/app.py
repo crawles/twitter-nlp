@@ -1,3 +1,11 @@
+"""
+twitter nlp
+~~~~~~~~~~~
+
+Serves the web application and sends tweets and tweet data using Server Side Events (SSE)
+
+"""
+
 import json
 import os
 import time
@@ -17,6 +25,9 @@ redis.connection.socket = socket
 # connect to redis for storing logging info
 r = helper_functions.connect_redis_db()
 
+# twitter compute and stats URL, from manifest
+SENTIMENT_COMPUTE_URL=os.getenv('SENTIMENT_COMPUTE_URL',None)
+SENTIMENT_STATS_URL=os.getenv('SENTIMENT_STATS_URL',None)
 
 def gen_dashboard_tweets():
     n = 5  # min number of seconds between each tweet
@@ -56,19 +67,11 @@ def live_tweets_sse():
 def tweet_rate_sse():
     return Response(get_tweet_stats(),mimetype='text/event-stream')
 
-#TODO:is this depreicated?
-@app.route('/swarm', methods=["POST"])
-def swarm():
-    print request.url
-    assert request.method == "POST"
-
-    locust_count = int(request.form["locust_count"])
-    hatch_rate = float(request.form["hatch_rate"])
-    return "True"
-
 @app.route('/')
 def page():
-    return render_template('index.html')
+    return render_template('index.html',
+                           SENTIMENT_COMPUTE_URL = SENTIMENT_COMPUTE_URL,
+                           SENTIMENT_STATS_URL = SENTIMENT_STATS_URL)
 
 if __name__ == '__main__':
     if os.environ.get('VCAP_SERVICES') is None: # running locally

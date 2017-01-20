@@ -1,8 +1,8 @@
 name: tweet_rate_environment
 dependencies:
-  - flask
   - pandas
   - python=2.7.11
   - pip:
+      - flask
       - gunicorn
       - redis
