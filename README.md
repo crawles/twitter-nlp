@@ -26,9 +26,17 @@ Dashboard information:
 ## Deploying the app on Pivotal Cloud Foundry
 Step 1<br> 
 * Rename manifest.example.yml to manifest.yml
-* In manifest.yml replace both \*URL for compute-tweet-stats\* and \*URL for sentiment-compute-app\*
+* In manifest.yml replace both \*URL for compute-tweet-stats\* and \*URL for sentiment-compute-app\* with appropriate URLs
 
-Step 2
+Step 2<br>
+* Add your Twitter credentials to CF environmental variables
+```cf set-env APP_NAME ACCESS_TOKEN ENV_VAR_VALUE
+cf set-env APP_NAME ACCESS_TOKEN_SECRET ENV_VAR_VALUE
+cf set-env APP_NAME CONSUMER_KEY ENV_VAR_VALUE
+cf set-env APP_NAME CONSUMER_SECRET ENV_VAR_VALUE
+```
+
+Step 3
 ```
 cf create-service p-redis shared-vm twitter-nlp-redis
 cf push
