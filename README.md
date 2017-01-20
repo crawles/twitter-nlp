@@ -31,9 +31,9 @@ Step 1<br>
 Step 2<br>
 * Add your Twitter credentials to CF environmental variables
 ```cf set-env APP_NAME ACCESS_TOKEN ENV_VAR_VALUE
-cf set-env APP_NAME ACCESS_TOKEN_SECRET ENV_VAR_VALUE
-cf set-env APP_NAME CONSUMER_KEY ENV_VAR_VALUE
-cf set-env APP_NAME CONSUMER_SECRET ENV_VAR_VALUE
+cf set-env firehose ACCESS_TOKEN_SECRET ENV_VAR_VALUE
+cf set-env firehose CONSUMER_KEY ENV_VAR_VALUE
+cf set-env firehose CONSUMER_SECRET ENV_VAR_VALUE
 ```
 
 Step 3
