@@ -53,7 +53,7 @@ function draw(divId,dataMetric,margin,width,height) {
         .text(yLabel);
 
     var x = d3.scaleLinear()
-        .domain([-(n - 2), -1])
+        .domain([1, n - 2])
         .range([0, width]);
     var y = d3.scaleLinear()
         .domain([0, Math.max(1, d3.max(data))])
@@ -76,7 +76,13 @@ function draw(divId,dataMetric,margin,width,height) {
     g.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + y(0) + ")")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(x)
+            .tickFormat(
+                // For ticks, convert to number of seconds ago
+                function (num) {
+                    return (n - num);
+                }
+            ));
     g.append("g")
         .attr("class", "yaxis")
         .call(d3.axisLeft(y));
