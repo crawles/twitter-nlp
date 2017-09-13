@@ -1,9 +1,14 @@
-#Twitter NLP
+# Twitter NLP
 Twitter NLP is a microservice-based web application for analyzing Twitter sentiment in real time. The goal of the project is to show how to deploy a machine learning model, apply it in real time, and scale the model.
 
 Check out this [blog post](https://content.pivotal.io/blog/how-to-scaling-a-machine-learning-model-using-pivotal-cloud-foundry) and this [blog post](https://content.pivotal.io/blog/data-science-how-to-text-analytics-as-a-service) for more information.
 
 Try the application: [Twitter NLP](http://twitternlp.cfapps.pez.pivotal.io/)
+
+Resources:
+* [Flask](http://flask.pocoo.org/)
+* [scikit-learn](http://scikit-learn.org/stable/)
+* [Cloud Foundry](https://www.cloudfoundry.org/)
 
 ## Architecture
 
